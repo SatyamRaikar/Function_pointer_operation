@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+// Function prototypes for mathematical operations
+typedef int (*MathOperation)(int, int);
+
+int add(int a, int b);
+int subtract(int a, int b);
+int multiply(int a, int b);
+int divide(int a, int b);
+
+void performOperation(int *array, int size, MathOperation operation);
+
+int main() {
+    // Example array of numbers
+    int numbers[] = {10, 5, 3, 8, 12};
+
+    // Perform addition on the array
+    printf("Addition Result: ");
+    performOperation(numbers, 5, add);
+
+    // Perform subtraction on the array
+    printf("Subtraction Result: ");
+    performOperation(numbers, 5, subtract);
+
+    // Perform multiplication on the array
+    printf("Multiplication Result: ");
+    performOperation(numbers, 5, multiply);
+
+    // Perform division on the array
+    printf("Division Result: ");
+    performOperation(numbers, 5, divide);
+
+    return 0;
+}
+
+// Implementation of mathematical operations
+int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
+int divide(int a, int b) {
+    if (b != 0) {
+        return a / b;
+    } else {
+        printf("Error: Division by zero.\n");
+        return 0;
+    }
+}
+
+// Function to perform a mathematical operation on an array
+void performOperation(int *array, int size, MathOperation operation) {
+    for (int i = 0; i < size; ++i) {
+        printf("%d ", operation(array[i], 2)); // Example: Performing the operation with 2
+    }
+    printf("\n");
+}
